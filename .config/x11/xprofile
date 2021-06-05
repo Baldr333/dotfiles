@@ -1,0 +1,14 @@
+#!/bin/sh
+# This file runs when a DM logs you into a graphical session.
+
+#xrandr ..........
+setbg &
+#xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources &
+dunst &
+#mpd &
+#xcompmgr
+#xset -dpms &
+#or
+#xset r rate 300 50 &
+#unclutter &
+mpd &

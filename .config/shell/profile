@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+#
+#old one
+#export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+#
+unsetopt PROMPT_SP
+
+# Default programs:
+export EDITOR="nvim"
+export TERMINAL="st"
+export BROWSER="librewolf-bin"
+
+# ~/ Clean-up:
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
+#export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+export LESSHISTFILE="-"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+#export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+#export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+
+#start graphical server on user's current tty if not already running.
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+
+#sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null

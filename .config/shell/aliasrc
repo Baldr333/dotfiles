@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Use neovim for vim if present
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+alias cfg="/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+cp="cp -iv" \
+mv="mv -iv" \
+rm="rm -vI" \
+bc="bc -ql" \
+mkd="mkdir -pv" \
+ffmpeg="ffmpeg -hide_banner" \
+diff="diff --color" \
+ls="ls --color"
+
+# Portage admin aliases
